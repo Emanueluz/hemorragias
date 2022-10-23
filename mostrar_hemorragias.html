@@ -81,10 +81,12 @@
       <link rel="stylesheet" href="mostrar_hemorragias.css">
       <figure>
 
-       <img id="imagem_mod" src="ID_000f0bd99.png" alt="..." > 
+       <img id="imagem_mod" src="" alt="..." > <script>
+        var imagem = document.getElementById("imagem_mod")
+        imagem.src=(set_imagem_atual2())
+       </script> 
          
         <button id="botton_brain" onclick= "set_brain()" type="button" class="btn btn-dark">BRAIN</button>
-        
         <button id="botton_subdural" onclick="  set_subdural(  )" type="button" class="btn btn-dark">SUBDURAL</button>
         <button id="botton_bone" onclick=" set_bone( )"type="button" class="btn btn-dark">BONE</button>
         <button id="botton_heatmap" onclick=" set_heatmap( )" type="button" class="btn btn-dark">HEATMAP</button>
@@ -111,6 +113,17 @@
             <th scope="col">SLICES</th> 
           </thead>
           <tbody>
+
+
+            <tr id="outro_slice">teste</tr>
+            <script src = "mostrar_hemorragias.js">
+              montar_botoes_slice()
+            </script>
+
+
+
+
+
               <tr>
                 <td>
                   <link rel="stylesheet" href="mostrar_hemorragias.css">
@@ -152,7 +165,7 @@
                 <td>
                   <link rel="stylesheet" href="mostrar_hemorragias.css">
                   <figure>
-                   <img src="ID_000f0bd99.png" alt="..." class="saldavel_img"> 
+                   <img src="ID_000f0bd99.png" alt="..." class="saudavel_img"> 
                   </figure>
                 </td>
               </tr>

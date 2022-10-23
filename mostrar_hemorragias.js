@@ -1,27 +1,51 @@
-lista_de_slices={
-    "slice1":{
+var lista_de_slices=[
+    {"slice1":{
     "imagem_att": "ID_000f0bd99.png",
     "brain":"ID_00fdec745.png",
     "subdural":"ID_000f0bd99.png",
     "bone":"ID_00ed02fcc.png",
     "heatmap":"ID_00fdec745.png",
     "probabilidade":1
-      },
+      }},
 
-    "slice2":{
+    {"slice2":{
     "imagem_att": "ID_000f0bd99.png",
     "brain":"ID_00fdec745.png",
     "subdural":"ID_000f0bd99.png",
     "bone":"ID_00ed02fcc.png",
     "heatmap":"ID_00fdec745.png",
     "probabilidade":2
-      },
-      "slice3":{"probabilidade":3},
-      "slice4":{"probabilidade":4},
-      "slice5":{"probabilidade":5},
-      "slice6":{"probabilidade":6},
-      "slice7":{"probabilidade":7}
-}
+      }},
+     { "slice3":{"imagem_att": "ID_000f0bd99.png",
+     "brain":"ID_00fdec745.png",
+     "subdural":"ID_000f0bd99.png",
+     "bone":"ID_00ed02fcc.png",
+     "heatmap":"ID_00fdec745.png",
+     "probabilidade":1}},
+     { "slice4":{"imagem_att": "ID_000f0bd99.png",
+    "brain":"ID_00fdec745.png",
+    "subdural":"ID_000f0bd99.png",
+    "bone":"ID_00ed02fcc.png",
+    "heatmap":"ID_00fdec745.png",
+    "probabilidade":1}},
+     { "slice5":{"imagem_att": "ID_000f0bd99.png",
+    "brain":"ID_00fdec745.png",
+    "subdural":"ID_000f0bd99.png",
+    "bone":"ID_00ed02fcc.png",
+    "heatmap":"ID_00fdec745.png",
+    "probabilidade":1}},
+     { "slice6":{"imagem_att": "ID_000f0bd99.png",
+    "brain":"ID_00fdec745.png",
+    "subdural":"ID_000f0bd99.png",
+    "bone":"ID_00ed02fcc.png",
+    "heatmap":"ID_00fdec745.png",
+    "probabilidade":1}},
+     { "slice7":{"imagem_att": "ID_000f0bd99.png",
+    "brain":"ID_00fdec745.png",
+    "subdural":"ID_000f0bd99.png",
+    "bone":"ID_00ed02fcc.png",
+    "heatmap":"ID_00fdec745.png",
+    "probabilidade":1}}    ]
 
 lista={ "imagem_att": "ID_000f0bd99.png",
     "brain":"ID_00fdec745.png",
@@ -38,23 +62,39 @@ function ordenena_slices(lista_de_slices){
     //adiciona as chaves do json com os slices 
     for(chave in lista_de_slices){
         chaves_slices.push(chave)}
+        var aux
+        var aux_conteudo
      for(i in chaves_slices){
         for(j in chaves_slices){ 
              if(lista_de_slices[(chaves_slices[i])]["probabilidade"] < lista_de_slices[(chaves_slices[j])]["probabilidade"]){
-                var aux=chaves_slices[i]
+                aux=i
+                aux_conteudo=chaves_slices[i]
                 console.log(aux)
                 chaves_slices.splice(i,1, chaves_slices[j])
-                chaves_slices.splice(j,1, chaves_slices[aux])
+                chaves_slices.splice(j,1,aux_conteudo)
                 
                 
             } 
             
-        }console.log(chaves_slices )
+        } 
     }
     return chaves_slices
 }
-ordenena_slices(lista_de_slices)
+function comparar(a,b){
+     
+        if (a.probabilidade<b.probabilidade) {
+            return 1;
+          }
+          if (a.probabilidade>b.probabilidade) {
+            return -1;
+          }
+        
+          return 0;
+    }
 
+/*ordenena_slices(lista_de_slices)
+lista_de_slices.sort(comparar);
+for (i in lista_de_slices){console.log(lista_de_slices[i])}*/
  
 function mudarimg(obj, novaimg){
     document.getElementById(obj).src = novaimg; 
@@ -110,3 +150,34 @@ function set_heatmap(arquivo){
     mudarimg("imagem_mod",heatmap)
 }
  
+
+
+function montar_botoes_slices(){
+    const fila_de_botoes_slece =  document.querySelector("#outro_slice")
+    
+    let html = ``
+    
+    lista_de_slices.map(item =>{html+`<tr>
+                                    <td>
+                                    <button
+                                        id="${item}" onclick="botao_slice(${item.probabilidade})"
+                                        type="submit" aria-label="Gerar relatório pdf"> 
+                                        <img src=${item.nome}  class="hemorragia_img"
+                                    </button>
+                                    </td>                        
+                                    </tr>`
+                                    })   
+    fila_de_botoes_slece.innerHTML = html;
+
+
+
+
+
+ }
+
+
+function botao_slice(nova_lista_atual){
+
+    lista=nova_lista_atual
+
+}
